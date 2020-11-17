@@ -1,0 +1,4 @@
+# OSX file
+.DS_Store
+# Tempory Excel file when open
+~$*.xlsm
