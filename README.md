@@ -1,7 +1,7 @@
 # Stock Market Analysis
 
 ## Overview of Project
-Here we use VBA tools to calculate the total daily volume and yearly return
+This project conatins VBA subroutines to calculate the total daily volume and yearly return
 from the 2017 and 2018 data for the 12 stocks in `VBA_Challenge.xlsm`. The
 total daily volume is the sum of the total number of shares traded each day and
 then totaled over the entire year and therefore shows the relative activity of
@@ -47,7 +47,7 @@ For i = 0 To 11
 ```
 It is noted the we can acquire the starting and ending prices by checking for a
 change in the current ticker from the previous and next rows because the dataset
-is ordered chronologically and grouped by ticker. We then calculate the yearly
+is grouped by ticker and then ordered chronologically. We then calculate the yearly
 return from the starting and ending prices and output the results to
 `All Stocks Analysis`. This executes in roughly 0.6 seconds for either year.
 
@@ -96,8 +96,8 @@ six.
 
 ## Summary
 ### Disadvantages
-We see that refactoring this program has significantly changed its structure
-and resulting execution times. Refactoring in general can be disadvantageous
+We see that refactoring this program has changed its structure
+and resulting execution time. Refactoring in general can be disadvantageous
 as it often involves shortening procedures which can decrease readability.
 `AllStocksAnalysisRefactored` exemplifies this as the reordering to remove
 duplicated code makes the program flow somewhat less clear. Further, refactors
@@ -107,7 +107,7 @@ is activated and thus if implemented wrong could result in overwriting data.
 
 ### Advantages
 It can be argued however that the advantages of refactoring this subroutine
-outweigh its disadvantages. In terms of readability, from a glance it is much
+outweigh its disadvantages. In terms of readability, it is much easier
 to understand the single loop than the nested version. Further, the removal of
 duplicated code is in general advantageous as it makes later changes simpler
 since we need to modify code in less places. An example here is if we change
@@ -120,5 +120,5 @@ result in less steps. This is difficult to achieve when formulating an
 algorithm for the first time, but is much easier with the initial conditions
 and expected output already in place. For this analysis, the decrease in
 execution time makes the refactored subroutine more general to larger datasets
-with either more stocks for a more varied analysis and/or a larger collection
+with either more stocks for wider analysis and/or a larger collection
 of years to analyze changes over time.
