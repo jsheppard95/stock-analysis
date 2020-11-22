@@ -56,7 +56,7 @@ either year.
 ### `AllStocksAnalysisRefactored`
 In the refactored subroutine [`AllStocksAnalysisRefactored`](VBA_Challenge.vbs)
 (workbook module 2), we replace the nested loop with a single loop and acquire
-the total volume and yearly return for each stock in a single iteration through
+the total daily volume and yearly return for each stock in a single iteration through
 the dataset. We thus use arrays `tickerVolumes`, `tickerStartingPrices`, and
 `tickerEndingPrices` to store the total volume and starting/ending prices for
 each stock along with the index variable `tickerIndex` to keep track of the
@@ -122,5 +122,5 @@ result in less steps. This is difficult to achieve when formulating an
 algorithm for the first time, but is much easier with the initial conditions
 and expected output already in place. For this analysis, the decrease in
 execution time makes the refactored subroutine more general to larger datasets
-with either more stocks for wider analysis and/or a larger collection
+with either more stocks to perform a wider analysis and/or a larger collection
 of years to analyze changes over time.
