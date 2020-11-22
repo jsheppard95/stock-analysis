@@ -1,15 +1,16 @@
 # Stock Market Analysis
 
 ## Overview of Project
-This project conatins VBA subroutines to calculate the total daily volume and yearly return
-from the 2017 and 2018 data for the 12 stocks in `VBA_Challenge.xlsm`. The
-total daily volume is the sum of the total number of shares traded each day and
-then totaled over the entire year and therefore shows the relative activity of
-each stock, while the yearly return shows the percent change in the stock price
-from the beginning to the end of the year. The subroutines `AllStocksAnalysis`
-and [`AllStocksAnalysisRefactored`](VBA_Challenge.vbs) calculate these
-quantities for each stock in sheets `2017` and `2018` and then display the
-results in sheet `All Stocks Analysis`.
+This project contains VBA subroutines to calculate the total daily volume and
+yearly return from the 2017 and 2018 data for the 12 stocks in
+`VBA_Challenge.xlsm`. The total daily volume is the sum of the total number of
+shares traded each day and then added up over the entire year and therefore
+shows the relative activity of each stock, while the yearly return shows the
+percent change in the stock price from the beginning to the end of the year.
+The subroutines `AllStocksAnalysis` and
+[`AllStocksAnalysisRefactored`](VBA_Challenge.vbs) calculate these quantities
+for each stock in sheets `2017` and `2018` and then display the results in
+sheet `All Stocks Analysis`.
 
 ### Purpose
 The purpose of this project is to compare execution times for the subroutines
@@ -20,8 +21,8 @@ application to this analysis.
 ## Results
 ### `AllStocksAnalysis`
 The first version of this subroutine `AllStocksAnalysis` (workbook module 1)
-loops through each row for either 2017 or 2018 of `VBA_Challenge.xlsm` for each
-ticker contained in the dataset. It does so through the following nested loop:
+loops through each row of either 2017 or 2018 for each ticker contained in the
+dataset. It does so through the following nested loop:
 ```
 For i = 0 To 11
     ticker = tickers(i)
@@ -46,20 +47,21 @@ For i = 0 To 11
     'Output results for the current ticker
 ```
 It is noted the we can acquire the starting and ending prices by checking for a
-change in the current ticker from the previous and next rows because the dataset
-is grouped by ticker and then ordered chronologically. We then calculate the yearly
-return from the starting and ending prices and output the results to
-`All Stocks Analysis`. This executes in roughly 0.6 seconds for either year.
+change in the current ticker from the previous and next rows because the
+dataset is grouped by ticker and then ordered chronologically. We then
+calculate the yearly return from the starting and ending prices and output the
+results to `All Stocks Analysis`. This executes in roughly 0.6 seconds for
+either year.
 
 ### `AllStocksAnalysisRefactored`
-In the refactored subroutine
-[`AllStocksAnalysisRefactored`](VBA_Challenge.vbs) (workbook module 2), we
-replace the nested loop with a single loop and acquire the total volume and
-yearly return for each stock in a single iteration through the dataset. We thus
-use arrays `tickerVolumes`, `tickerStartingPrices`, and `tickerEndingPrices` to
-store the total volume and starting/ending prices for each stock along with the
-index variable `tickerIndex` to keep track of the current ticker as we loop
-through the rows of either year's data. Our loop then becomes:
+In the refactored subroutine [`AllStocksAnalysisRefactored`](VBA_Challenge.vbs)
+(workbook module 2), we replace the nested loop with a single loop and acquire
+the total volume and yearly return for each stock in a single iteration through
+the dataset. We thus use arrays `tickerVolumes`, `tickerStartingPrices`, and
+`tickerEndingPrices` to store the total volume and starting/ending prices for
+each stock along with the index variable `tickerIndex` to keep track of the
+current ticker as we loop through the rows of either year's data. Our loop then
+becomes:
 ```
 For i = 2 To RowCount
     'Increase volume for the current ticker
@@ -83,8 +85,8 @@ Next i
 This is advantageous in terms of computation time due to the removal of the
 nested loop. The previous version required an iteration through the entire
 dataset for each of the 12 tickers. This is unnecessary since the data is
-ordered chronologically and grouped by ticker, and so most iterations in the
-inner loop result in no computation due to the conditionals. The new version
+grouped by ticker and ordered chronologically, and so most iterations in the
+inner loop result in no data storage due to the conditionals. The new version
 removes these unnecessary iterations to significantly decrease the execution
 time. Further changes include reordering to open the dataset first and acquire
 the quantities of interest and then open the output sheet to display the
@@ -96,9 +98,9 @@ six.
 
 ## Summary
 ### Disadvantages
-We see that refactoring this program has changed its structure
-and resulting execution time. Refactoring in general can be disadvantageous
-as it often involves shortening procedures which can decrease readability.
+We see that refactoring this program has changed its structure and resulting
+execution time. Refactoring in general can be disadvantageous as it often
+involves shortening procedures which can decrease readability.
 `AllStocksAnalysisRefactored` exemplifies this as the reordering to remove
 duplicated code makes the program flow somewhat less clear. Further, refactors
 in general can have unexpected effects on previously working scripts. This
