@@ -64,15 +64,15 @@ through the rows of either year's data. Our loop then becomes:
 For i = 2 To RowCount
     'Increase volume for the current ticker
     tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 8).Value
-    
-	'Check if current row is the first row with the selected tickerIndex
+
+    'Check if current row is the first row with the selected tickerIndex
     'If so, note the starting price
     If Cells(i - 1, 1).Value <> tickers(tickerIndex) And Cells(i, 1).Value = tickers(tickerIndex) Then
         tickerStartingPrices(tickerIndex) = Cells(i, 6).Value
     End If
 
-	'Check if current row is the last row with the selected tickerIndex
-	'If so, note the ending price and increase tickerIndex
+    'Check if current row is the last row with the selected tickerIndex
+    'If so, note the ending price and increase tickerIndex
     If Cells(i, 1).Value = tickers(tickerIndex) And Cells(i + 1, 1).Value <> tickers(tickerIndex) Then
         tickerEndingPrices(tickerIndex) = Cells(i, 6).Value
         tickerIndex = tickerIndex + 1
