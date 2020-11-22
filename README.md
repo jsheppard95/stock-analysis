@@ -1,4 +1,4 @@
-# Stock Analysis
+# Stock Market Analysis
 
 ## Overview of Project
 Here we use VBA tools to calculate the total daily volume and yearly return
@@ -18,6 +18,7 @@ explore the advantages and disadvantages of refactoring code and its
 application to this analysis.
 
 ## Results
+### `AllStocksAnalysis`
 The first version of this subroutine `AllStocksAnalysis` loops through each
 row for either 2017 or 2018 of `VBA_Challenge.xlsm` for each ticker contained
 in the dataset. It does so through the following nested loop:
@@ -50,7 +51,8 @@ is ordered chronologically and grouped by ticker. We then calculate the yearly
 return from the starting and ending prices and output the results to
 `All Stocks Analysis`. This executes in roughly 0.6 seconds for either year.
 
-In the refactored subroutine [`AllStocksAnalysisRefored`](VBA_Challenge.vbs),
+### `AllStocksAnalysisRefactored`
+In the refactored subroutine [`AllStocksAnalysisRefactored`](VBA_Challenge.vbs),
 we replace the nested loop with a single loop and acquire the total volume and
 yearly return for each stock in a single iteration through the dataset. We thus
 use arrays `tickerVolumes`, `tickerStartingPrices`, and `tickerEndingPrices` to
@@ -92,6 +94,7 @@ changes reduce the execution time to 0.09 seconds for
 six.
 
 ## Summary
+### Disadvantages
 We see that refactoring this program has significantly changed its structure
 and resulting execution times. Refactoring in general can be disadvantageous
 as it often involves shortening procedures which can decrease readability.
@@ -101,6 +104,7 @@ in general can have unexpected effects on previously working scripts. This
 could occur here as the changes involve modifying when the relevant worksheet
 is activated and thus if implemented wrong could result in overwriting data.
 
+### Advantages
 It can be argued however that the advantages of refactoring this subroutine
 outweigh its disadvantages. In terms of readability, from a glance it is much
 to understand the single loop than the nested version. Further, the removal of
