@@ -19,9 +19,9 @@ application to this analysis.
 
 ## Results
 ### `AllStocksAnalysis`
-The first version of this subroutine `AllStocksAnalysis` loops through each
-row for either 2017 or 2018 of `VBA_Challenge.xlsm` for each ticker contained
-in the dataset. It does so through the following nested loop:
+The first version of this subroutine `AllStocksAnalysis` (workbook module 1)
+loops through each row for either 2017 or 2018 of `VBA_Challenge.xlsm` for each
+ticker contained in the dataset. It does so through the following nested loop:
 ```
 For i = 0 To 11
     ticker = tickers(i)
@@ -52,12 +52,13 @@ return from the starting and ending prices and output the results to
 `All Stocks Analysis`. This executes in roughly 0.6 seconds for either year.
 
 ### `AllStocksAnalysisRefactored`
-In the refactored subroutine [`AllStocksAnalysisRefactored`](VBA_Challenge.vbs),
-we replace the nested loop with a single loop and acquire the total volume and
+In the refactored subroutine
+[`AllStocksAnalysisRefactored`](VBA_Challenge.vbs) (workbook module 2), we
+replace the nested loop with a single loop and acquire the total volume and
 yearly return for each stock in a single iteration through the dataset. We thus
 use arrays `tickerVolumes`, `tickerStartingPrices`, and `tickerEndingPrices` to
 store the total volume and starting/ending prices for each stock along with the
-index variable `tickerIndex` to keep track of which ticker we are on as we loop
+index variable `tickerIndex` to keep track of the current ticker as we loop
 through the rows of either year's data. Our loop then becomes:
 ```
 For i = 2 To RowCount
