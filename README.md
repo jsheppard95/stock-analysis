@@ -20,7 +20,7 @@ application to this analysis.
 
 ## Results
 ### `AllStocksAnalysis`
-The first version of this subroutine `AllStocksAnalysis` (workbook module 1)
+The first version of this subroutine `AllStocksAnalysis` (VBAProject `Module1`)
 loops through each row of either 2017 or 2018 for each ticker contained in the
 dataset. It does so through the following nested loop:
 ```
@@ -55,13 +55,13 @@ either year.
 
 ### `AllStocksAnalysisRefactored`
 In the refactored subroutine [`AllStocksAnalysisRefactored`](VBA_Challenge.vbs)
-(workbook module 2), we replace the nested loop with a single loop and acquire
-the total daily volume and yearly return for each stock in a single iteration through
-the dataset. We thus use arrays `tickerVolumes`, `tickerStartingPrices`, and
-`tickerEndingPrices` to store the total volume and starting/ending prices for
-each stock along with the index variable `tickerIndex` to keep track of the
-current ticker as we loop through the rows of either year's data. Our loop then
-becomes:
+(VBAProject `Module2`), we replace the nested loop with a single loop and
+acquire the total daily volume and yearly return for each stock in a single
+iteration through the dataset. We thus use arrays `tickerVolumes`,
+`tickerStartingPrices`, and `tickerEndingPrices` to store the total volume and
+starting/ending prices for each stock along with the index variable
+`tickerIndex` to keep track of the current ticker as we loop through the rows
+of either year's data. Our loop then becomes:
 ```
 For i = 2 To RowCount
     'Increase volume for the current ticker
@@ -83,15 +83,15 @@ Next i
 'Output results for all tickers
 ```
 This is advantageous in terms of computation time due to the removal of the
-nested loop. The previous version required an iteration through the entire
-dataset for each of the 12 tickers. This is unnecessary since the data is
-grouped by ticker and ordered chronologically, and so most iterations in the
-inner loop result in no data storage due to the conditionals. The new version
-removes these unnecessary iterations to significantly decrease the execution
-time. Further changes include reordering to open the dataset first and acquire
-the quantities of interest and then open the output sheet to display the
-results instead of switching between the two, removing repeated code. These
-changes reduce the execution time to 0.09 seconds for
+nested loop. The previous version required iteration through the entire dataset
+for each of the 12 tickers. This is unnecessary since the data is grouped by
+ticker and ordered chronologically, and so most iterations in the inner loop
+result in no data storage due to the conditionals. The new version removes
+these unnecessary iterations to significantly decrease the execution time.
+Further changes include reordering to open the dataset first and acquire the
+quantities of interest and then open the output sheet to display the results
+instead of switching between the two, removing repeated code. These changes
+reduce the execution time to 0.09 seconds for
 [2017](Resources/VBA_Challenge_2017.png) and 0.08 seconds for
 [2018](Resources/VBA_Challenge_2018.png), a decrease by roughly a factor of
 six.
@@ -109,8 +109,8 @@ is activated and thus if implemented wrong could result in overwriting data.
 
 ### Advantages
 It can be argued however that the advantages of refactoring this subroutine
-outweigh its disadvantages. In terms of readability, it is much easier
-to understand the single loop than the nested version. Further, the removal of
+outweigh its disadvantages. In terms of readability, it is much easier to
+understand the single loop than the nested version. Further, the removal of
 duplicated code is in general advantageous as it makes later changes simpler
 since we need to modify code in less places. An example here is if we change
 the name of the output sheet `All Stocks Analysis`, in which case the updates
